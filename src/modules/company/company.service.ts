@@ -7,7 +7,8 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 
 export class CompanyService {
   create(createCompanyDto: CreateCompanyDto) {
-    return 'This action adds a new company';
+    
+    return createCompanyDto;
   }
 
   findAll() {
