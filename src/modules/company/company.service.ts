@@ -3,13 +3,16 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 
 @Injectable()
-export class CompaniesService {
+
+
+export class CompanyService {
   create(createCompanyDto: CreateCompanyDto) {
-    return 'This action adds a new company';
+    
+    return createCompanyDto;
   }
 
   findAll() {
-    return `This action returns all companies`;
+    return `This action returns all company`;
   }
 
   findOne(id: number) {
