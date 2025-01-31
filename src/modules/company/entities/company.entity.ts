@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, AfterUpdate, AfterInsert } from 'typeorm';
 @Entity()
-export class Company {
+export class Company {   
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -9,12 +9,6 @@ export class Company {
 
   @Column()
   address: string;
-
-  @Column()
-  phone: string;
-
-  @Column()
-  email: string;
 
   @Column()
   city: string;
@@ -39,5 +33,18 @@ export class Company {
 
   @Column()
   isActive: boolean;
+
+
+@AfterUpdate()
+logUpdate() {
+    console.log('Updated Company with id: ' + this.id);
+  }
+@AfterInsert ()
+logInsert() {
+console.log('Inserted Company with id: ' + this.id);
+}
+
+
+
 
 }
