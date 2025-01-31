@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  NotFoundException
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
@@ -21,22 +22,26 @@ export class CompanyController {
   }
 
   @Get()
-  findAll() {
-    return this.companyService.findAll();
+  async findAll() {
+    const response = await this.companyService.findAll();
+    if (!response) {
+      throw new NotFoundException('No companies found');
+    }
+    return response;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.companyService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.companyService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
-    return this.companyService.update(+id, updateCompanyDto);
+  async update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
+    return await this.companyService.update(+id, updateCompanyDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.companyService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.companyService.remove(+id);
   }
 }

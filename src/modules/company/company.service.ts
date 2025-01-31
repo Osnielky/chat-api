@@ -10,13 +10,13 @@ export class CompanyService {
     @InjectRepository(Company) private companyRepository: Repository<Company>,
   ) {}
 
-  create(createCompanyDto: CreateCompanyDto) {
+  async create(createCompanyDto: CreateCompanyDto) {
     const company = this.companyRepository.create(createCompanyDto);
     return this.companyRepository.save(company);
   }
 
-  findAll() {
-    return this.companyRepository.find();
+  async findAll() {
+    return await this.companyRepository.find();
   }
 
   async findOne(id: number) {
